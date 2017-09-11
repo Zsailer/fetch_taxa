@@ -2,7 +2,7 @@
 
 A simple python package to fetch taxonomic data through Entrez.
 
-# Basic Usage
+# Basic Example
 
 Simply read some csv file with a list of accession numbers.
 
@@ -11,7 +11,7 @@ Simply read some csv file with a list of accession numbers.
 fetch_taxa -i accession_list.csv -o taxa_data.csv --email "myemail@gmail.com"
 ```
 
-**Input File Example**
+**accession_list.csv**
 
 <table border="1" class="dataframe">
   <thead>
@@ -48,7 +48,7 @@ fetch_taxa -i accession_list.csv -o taxa_data.csv --email "myemail@gmail.com"
   </tbody>
 </table>
 
-**Output File Example**
+**taxa_data.csv**
 
 <table border="1" class="dataframe">
   <thead>
