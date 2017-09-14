@@ -6,12 +6,18 @@ from xml.etree import ElementTree as ET
 
 import pandas as pd
 
-def to_DataFrame(entrez_xml):
+def merge_df(df, entrez_xml):
     """Take Entrez data and convert to Dataframe.
     """
     data = parse(entrez_xml)
-    df = pd.DataFrame(data)
-    return df
+    # Entrez appends a ".1" to accver. Remove it
+    for d in data:
+        d["accver"] = d["accver"].split(".")[0]
+
+    new_df = pd.DataFrame(data)
+    new_df.set_index(["accver"])
+    merged_df = pd.merge(df, new_df, on=["accver"])
+    return merged_df
 
 def to_taxon_namespace():
     """"""

@@ -9,13 +9,14 @@ from fetch_taxa import *
 def main(input, output, email):
     """"""
     # Read an accession list from a file
-    accession_list = read.read_accessions(input)
+    df = read.read(input)
+    accession_list = list(df["accver"])
 
     # Fetch taxon data for that list
     xml_data = fetch(accession_list, email)
 
     # Parse xml data and convert to Dataframe.
-    df = parse.to_DataFrame(xml_data)
+    df = parse.merge_df(df, xml_data)
 
     # Write to CSV
     df.to_csv(output)
